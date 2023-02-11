@@ -1,7 +1,7 @@
 locals {
   env = terraform.workspace
 
-  subnet_ids        = tolist(
+  private_subnet_ids = tolist(
   module.vpc.private_subnet.*.id
   )
 
@@ -12,6 +12,7 @@ locals {
   vpc_id = module.vpc.vpc_id
 }
 
+# VPC variables start
 variable "public_cidr_blocks" {
   type    = map(list(string))
   default = {
@@ -51,3 +52,55 @@ variable "vpc_cidr_block" {
     production: "10.0.0.0/16"
   }
 }
+# VPC variables end
+
+# EKS variables start
+variable "enabled_cluster_log_types" {
+  type        = list(string)
+  description = "A list of the desired control plane logging to enable. For more information, see https://docs.aws.amazon.com/en_us/eks/latest/userguide/control-plane-logs.html. Possible values [`api`, `audit`, `authenticator`, `controllerManager`, `scheduler`]"
+  default = [
+    "api",
+    "audit",
+    "authenticator",
+    "controllerManager",
+    "scheduler",
+  ]
+}
+
+variable "ondemand_node_pool_instance_types" {
+  type    = map(list(string))
+  default = {
+    staging: [
+      "t3.medium"
+    ],
+    production: [
+      "m4.xlarge"
+    ]
+  }
+}
+
+variable "ondemand_node_pool_desired_size" {
+  type    = map(number)
+  default = {
+    staging: 1
+    production: 6
+  }
+}
+
+
+variable "ondemand_node_pool_max_size" {
+  type    = map(number)
+  default = {
+    staging: 6
+    production: 10
+  }
+}
+
+variable "ondemand_node_pool_min_size" {
+  type    = map(number)
+  default = {
+    staging: 1
+    production: 3
+  }
+}
+# EKS variables end
