@@ -31,3 +31,20 @@ module "ecr" {
   source                     = "../../modules/ecr"
   ecr_lifecycle_image_count  = var.ecr_lifecycle_image_count[local.env]
 }
+
+module "rds" {
+  source                      = "../../modules/rds"
+  vpc_id                      = local.vpc_id
+  public_subnet_ids           = local.public_subnet_ids
+  private_subnet_ids          = local.private_subnet_ids
+  allowed_ips                 = local.allowed_ips[local.env]
+  rds_cluster_id              = var.rds_cluster_id
+  engine_mode                 = var.engine_mode
+  engine_version              = var.engine_version
+  db_name                     = var.db_name
+  min_capacity                = var.min_capacity[local.env]
+  max_capacity                = var.max_capacity[local.env]
+  deletion_protection         = var.deletion_protection[local.env]
+  db_snapshot_identifier      = var.db_snapshot_identifier[local.env]
+  rds_backup_retention_period = var.rds_backup_retention_period[local.env]
+}

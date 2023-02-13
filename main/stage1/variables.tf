@@ -10,6 +10,11 @@ locals {
   )
 
   vpc_id = module.vpc.vpc_id
+
+  allowed_ips = {
+    staging   : concat(var.ops_ips),
+    production: concat(var.ops_ips)
+  }
 }
 
 # VPC variables start
@@ -51,6 +56,13 @@ variable "vpc_cidr_block" {
     staging   : "10.1.0.0/16",
     production: "10.0.0.0/16"
   }
+}
+
+variable "ops_ips" {
+  type    = list(string)
+  default = [
+    "83.84.104.185/32" // Gokhan Home
+  ]
 }
 # VPC variables end
 
@@ -114,3 +126,65 @@ variable "ecr_lifecycle_image_count" {
   }
 }
 # ECR variables end
+
+# RDS variables start
+variable "rds_cluster_id" {
+  type    = string
+  default = "gokhan-wt-db"
+}
+
+variable "engine_mode" {
+  type    = string
+  default = "serverless"
+}
+
+variable "engine_version" {
+  type    = string
+  default = "5.7.mysql_aurora.2.08.3"
+}
+
+variable "db_name" {
+  type    = string
+  default = "GokhanWTDB"
+}
+
+variable "min_capacity" {
+  type    = map(string)
+  default = {
+    staging   : "2"
+    production: "4"
+  }
+}
+
+variable "max_capacity" {
+  type    = map(string)
+  default = {
+    staging   : "16"
+    production: "32"
+  }
+}
+
+variable "deletion_protection" {
+  type    = map(string)
+  default = {
+    staging    = false,
+    production = true
+  }
+}
+
+variable "db_snapshot_identifier" {
+  type    = map(string)
+  default = {
+    staging   : ""
+    production: ""
+  }
+}
+
+variable "rds_backup_retention_period" {
+  type    = map(number)
+  default = {
+    staging     = 1
+    production  = 30
+  }
+}
+# RDS variables end
