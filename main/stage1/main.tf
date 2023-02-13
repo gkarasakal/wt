@@ -26,3 +26,8 @@ module "eks" {
   ondemand_node_pool_max_size            = var.ondemand_node_pool_max_size[local.env]
   ondemand_node_pool_min_size            = var.ondemand_node_pool_min_size[local.env]
 }
+
+module "ecr" {
+  source                     = "../../modules/ecr"
+  ecr_lifecycle_image_count  = var.ecr_lifecycle_image_count[local.env]
+}

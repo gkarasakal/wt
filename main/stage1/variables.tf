@@ -104,3 +104,13 @@ variable "ondemand_node_pool_min_size" {
   }
 }
 # EKS variables end
+
+# ECR variables start
+variable "ecr_lifecycle_image_count" {
+  type    = map(number)
+  default = {
+    staging   : 2
+    production: 5
+  }
+}
+# ECR variables end
