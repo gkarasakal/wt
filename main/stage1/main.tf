@@ -8,6 +8,7 @@ module "vpc" {
 
 module "iam" {
   source                                = "../../modules/iam"
+  oidc_provider_url                     = var.oidc_provider_url[local.env]
 }
 
 module "eks" {

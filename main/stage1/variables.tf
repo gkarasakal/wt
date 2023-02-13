@@ -66,6 +66,16 @@ variable "ops_ips" {
 }
 # VPC variables end
 
+# IAM variables start
+variable "oidc_provider_url" {
+  type    = map(string)
+  default = {
+    staging   : "https://oidc.eks.eu-west-1.amazonaws.com/id/8E555D6C107B14A30D6EDB5BE5663B21"
+    production: ""
+  }
+}
+# IAM variables end
+
 # EKS variables start
 variable "enabled_cluster_log_types" {
   type        = list(string)
