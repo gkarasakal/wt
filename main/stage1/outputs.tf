@@ -16,6 +16,10 @@ output "eks-iam-role-arn" {
   value = module.iam.eks-iam-role-arn
 }
 
+output "alb_role_arn" {
+  value = module.iam.alb_role_arn
+}
+
 /*
   Kubernetes Cluster
 */
@@ -25,6 +29,10 @@ output "cluster-name" {
 
 output "eks-cluster-endpoint" {
   value = module.eks.eks-cluster-endpoint
+}
+
+output "eks-cluster-certificate-authority" {
+  value = module.eks.eks-cluster-certificate-authority
 }
 
 /*

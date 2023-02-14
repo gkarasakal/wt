@@ -25,3 +25,17 @@ output "eks-AmazonEKS_CNI_Policy" {
 output "eks-AmazonEC2ContainerRegistryReadOnly" {
   value = aws_iam_role_policy_attachment.eks-AmazonEC2ContainerRegistryReadOnly.policy_arn
 }
+
+output "alb_role_arn" {
+  value = aws_iam_role.alb_role.arn
+}
+
+output "eks_openid_url" {
+  description = "OpenID url of our k8 cluster."
+  value       = aws_iam_openid_connect_provider.gokhan-wt-eks-oidc.url
+}
+
+output "eks_openid_arn" {
+  description = "OpenID ARN of our k8 cluster."
+  value       = aws_iam_openid_connect_provider.gokhan-wt-eks-oidc.arn
+}

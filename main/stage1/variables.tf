@@ -74,6 +74,11 @@ variable "oidc_provider_url" {
     production: ""
   }
 }
+
+variable "aws_load_balancer_controller_sa_name" {
+  type    = string
+  default = "aws-load-balancer-controller"
+}
 # IAM variables end
 
 # EKS variables start

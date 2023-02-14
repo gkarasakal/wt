@@ -9,6 +9,7 @@ module "vpc" {
 module "iam" {
   source                                = "../../modules/iam"
   oidc_provider_url                     = var.oidc_provider_url[local.env]
+  aws_load_balancer_controller_sa_name  = var.aws_load_balancer_controller_sa_name
 }
 
 module "eks" {
