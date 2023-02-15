@@ -49,4 +49,5 @@ module "rds" {
   deletion_protection         = var.deletion_protection[local.env]
   db_snapshot_identifier      = var.db_snapshot_identifier[local.env]
   rds_backup_retention_period = var.rds_backup_retention_period[local.env]
+  eks_sg_id                   = local.eks_sg_id[local.env]
 }

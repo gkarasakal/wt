@@ -39,6 +39,13 @@ resource "aws_security_group" "rds-security-group" {
     cidr_blocks     = var.allowed_ips
   }
 
+  ingress {
+    from_port       = 3306
+    protocol        = "TCP"
+    to_port         = 3306
+    security_groups = [var.eks_sg_id]
+  }
+
   egress {
     from_port   = 0
     to_port     = 0

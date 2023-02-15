@@ -7,10 +7,10 @@ resource "aws_security_group" "alb-ingress-security-group" {
   }
 
   ingress {
-    from_port       = 80
-    to_port         = 80
-    protocol        = "tcp"
-    cidr_blocks     = var.web_traffic
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = var.web_traffic
   }
 
   egress {
@@ -51,9 +51,9 @@ resource "kubernetes_ingress_v1" "alb_ingress" {
         path {
           backend {
             service {
-              name = "ssl-redirect"
+              name = "gokhan-wt-app-service"
               port {
-                name = "use-annotation"
+                number = 8080
               }
             }
           }

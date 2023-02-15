@@ -15,4 +15,25 @@ variable "alb_healthcheck_interval" {
     production: 60
   }
 }
+
+variable "gokhan_wt_app_image" {
+  type    = string
+  default = "995105043624.dkr.ecr.eu-west-1.amazonaws.com/gokhan-wt-app-staging:latest"
+}
+variable "gokhan_wt_app_hpa_min_replicas" {
+  type    = number
+  default = 1
+}
+variable "gokhan_wt_app_hpa_max_replicas" {
+  type    = number
+  default = 4
+}
+variable "gokhan_wt_app_hpa_cpu" {
+  type    = number
+  default = 80
+}
+variable "gokhan_wt_app_deployment_replicas" {
+  type    = number
+  default = 1
+}
 # Deployments variables end

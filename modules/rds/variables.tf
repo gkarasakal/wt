@@ -54,3 +54,7 @@ variable "db_snapshot_identifier" {
 variable "rds_backup_retention_period" {
   type    = number
 }
+
+variable "eks_sg_id" {
+  type    = string
+}

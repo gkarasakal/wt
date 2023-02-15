@@ -15,6 +15,12 @@ locals {
     staging   : concat(var.ops_ips),
     production: concat(var.ops_ips)
   }
+
+  // Security group ID of EKS which has been created automatically during cluster creation
+  eks_sg_id = {
+    staging   : "sg-0e327c05e527a8acf",
+    production: ""
+  }
 }
 
 # VPC variables start
